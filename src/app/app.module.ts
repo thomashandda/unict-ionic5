@@ -8,14 +8,30 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { UnictDatePipe } from './pipes/unict-date.pipe';
+
+import { HttpClientModule } from '@angular/common/http';
+import { NewTweetPageModule } from './pages/new-tweet/new-tweet.module';
+import { UniLoaderService } from './shared/uniLoader.service';
+import { UniAlertService } from './shared/uniAlert.service';
+import { ToastService } from './shared/toast.service';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, UnictDatePipe],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    HttpClientModule,
+    NewTweetPageModule
+  ],
   providers: [
     StatusBar,
     SplashScreen,
+    UniLoaderService,
+    UniAlertService,
+    ToastService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
